@@ -1,75 +1,74 @@
-var myHeightToMove = window.innerHeight-210;
-var myWidthToMove = window.innerWidth-210;
-
 greenBox.onclick = moveGreen;
-function moveGreen(event) {
-    // greenBox.className = "moveGreen";
-    
-        greenBox.style.transform = "translate(0px,"+myHeightToMove+"px)";
-        greenBox.style.transitionDuration = "2s";
-}
-greenBox.addEventListener("transitionend", function (event) {
-    setTimeout(function () {
-        // greenBox.className = "moveGreenUp";
-        greenBox.style.transform = "translate(0px,0px)";
-        greenBox.style.transitionDuration = "2s";
-       
-    }, 500)
-});
- 
 
-var ifMovedBlack = false;
-blackBox.onclick = moveBlackDown;
-function moveBlackDown(event) {
-    // blackBox.className = "moveBlack";
-    blackBox.style.transform = "translate(0px,"+myHeightToMove+"px)";
-    blackBox.style.transitionDuration = "2s";
-    ifMovedBlack = true;
+function moveGreen(event) {
+    var greenStay = document.getElementsByClassName("greenStay")[0];
+    var greenMoved = document.getElementsByClassName("greenMove")[0];
+    if (greenStay) {
+        greenBox.classList.remove("greenStay");
+        greenBox.className = 'greenMove';
+        greenBox.addEventListener("transitionend", function (event) {
+            setTimeout(moveGreenBack, 1000);
+
+            function moveGreenBack() {
+                greenBox.classList.remove("greenMove");
+                greenBox.className = 'greenStay';
+
+            }
+        })
+    }
 }
-blackBox.addEventListener("transitionend", function (event) {
-    var blackBoxArr = document.getElementsByClassName("moveBlack")
-    var blackB = blackBoxArr[0];
-    if (ifMovedBlack) {
-        if (blackBox.getBoundingClientRect().top >= 200) {
-            blackBox.addEventListener('click', moveBlackUp);
+
+
+blackBox.onclick = moveBlack;
+
+function moveBlack(event) {
+    var blackStay = document.getElementsByClassName("blackStay")[0];
+    var blackMove = document.getElementsByClassName("blackMove")[0];
+    if (blackStay) {
+        blackBox.classList.remove("blackStay");
+        blackBox.className = 'blackMove';
+    } else {
+        blackBox.classList.remove("blackMove");
+        blackBox.className = 'blackStay';
+    }
+}
+
+
+
+redBox.onclick = moveRed;
+
+function moveRed(event) {
+    var redStayUp = document.getElementsByClassName("redStayUp")[0];
+    var redStayDown = document.getElementsByClassName("redStayDown")[0];
+    var redStayLeft = document.getElementsByClassName("redStayLeft")[0];
+
+    if (redStayUp) {
+        redBox.classList.remove("redStayUp");
+
+        redBox.className = 'redStayDown';
+        redBox.addEventListener("transitionend", moveLeftTimer)
+        function moveLeftTimer(event) {
+            setTimeout(moveRedRight, 1000);
+
+            function moveRedRight() {
+                redBox.classList.remove("redStayDown");
+                redBox.className = 'redStayLeft';
+            }
+        }
+    } else if (redStayLeft) {
+        redBox.removeEventListener("transitionend", moveLeftTimer);
+        redBox.classList.remove("redStayLeft");
+        redBox.className = 'redStayRight';
+
+        redBox.addEventListener("transitionend", moveRightTimer)
+
+        function moveRightTimer(event) {
+            setTimeout(moveRedRight, 1000);
+
+            function moveRedRight() {
+                redBox.classList.remove("redStayDown");
+                redBox.className = 'redStayUp';
+            }
         }
     }
-});
-function moveBlackUp(event) {
-    blackBox.style.transform = "translate(0px,0px)";
-    blackBox.style.transitionDuration = "2s";
-    blackBox.removeEventListener('click', moveBlackUp);
-
 }
-
-
-
-
-
-
-
-redBox.addEventListener('click', moveRedDown);
-var ifRedMoved = false;
-var startAgain = false;
-function moveRedDown(event) {
-    if(!ifRedMoved){
-        redBox.style.transform = "translate(0px,"+myHeightToMove+"px)";
-        redBox.style.transitionDuration = "2s";
-        redBox.addEventListener("transitionend", moveLeft);
-        
-    } else if(ifRedMoved){
-        // redBox.removeEventListener('click',moveRedDown);
-        redBox.removeEventListener('transitionend',moveLeft);
-}
-}
-moveLeft =(event) => {
-    setTimeout(function () {
-        redBox.style.transform = "translate(-"+myWidthToMove+'px, '+myHeightToMove+"px)";
-        redBox.style.transitionDuration = "2s";
-        ifRedMoved = true;
-    }, 1000);
-}
-
-
-
-

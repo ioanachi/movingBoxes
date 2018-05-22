@@ -1,0 +1,81 @@
+@keyframes moveRedDown {
+    0% {
+        top: 0px;
+        left: 0px;
+    }
+    50% {
+        top: 80vh;
+        left: 0px;
+    }
+    100% {
+        top: 80vh;
+        left: 80vw;
+    }
+}
+
+body,
+html {
+    height: 100%;
+}
+
+.wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.wrapper>div {
+    width: 200px;
+    height: 200px;
+}
+
+#greenBox {
+    position: absolute;
+    background-color: green;
+    top: 10px;
+    left: 10px;
+}
+
+#blackBox {
+    position: absolute;
+    border: 1px solid;
+    background-color: black;
+    top: 10px;
+    right: 50%;
+}
+
+#redBox {
+    background-color: red;
+    position: absolute;
+    top: 10px;
+    left: calc(100% - 200px);
+}
+
+.moveGreen {
+    transform: translate(0px, 80vh);
+    transition-duration: 2s;
+}
+
+.moveGreenUp {
+    transform: translate(0px, 0px);
+    transition-duration: 2s;
+}
+
+.moveBlack {
+    transform: translate(0px, 0.8vmax);
+    transition-duration: 2s;
+}
+
+.moveRed {
+    transform: translate(0px, 80vh);
+    transition-duration: 2s;
+}
+
+.moveRedLeft {
+    transform: translate(-88vw, 80vh);
+    transition-duration: 2s;
+}
+
+.moveRedRight {
+    transform: translate(0px, 80vh);
+    transition-duration: 2s;
+}
