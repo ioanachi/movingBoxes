@@ -11,8 +11,8 @@ html {
 }
 
 .wrapper>div {
-    width: 200px;
-    height: 200px;
+    width: 20%;
+    height: 20%;
     
 }
 
@@ -35,49 +35,49 @@ html {
 }
 
 .greenStay {
-    top: 10px;
+    top: 1%;
     transition-property: top;
     transition-duration: 2s;
 }
 
 .greenMove {
-    top:  calc(100% - 200px);
+    top:  calc(100% - 20%);
     transition-property: top;
     transition-duration: 2s;
 }
 
 .blackStay {
-    top: 10px;
+    top: 1%;
     transition-property: top;
     transition-duration: 2s;
 }
 
 .blackMove {
-    top:  calc(100% - 200px);
+    top:  calc(100% - 20%);
     transition-property: top;
     transition-duration: 2s;
 }
 
 .redStayUp {
-    top: 10px;
+    top: 1%;
     right:0px;
     transition-property: top right;
     transition-duration: 2s;
 }
 .redStayDown {
-    top: calc(100% - 200px);
-    right:1px;
+    top: calc(100% - 20%);
+    right:0px;
     transition-property: top right;
     transition-duration: 2s;
 }
 .redStayLeft {
-    top: calc(100% - 200px);
-    right: calc(100% - 200px);
+    top: calc(100% - 20%);
+    right: calc(100% - 20%);
     transition-property: top right;
     transition-duration: 2s;
 }
 .redStayRight {
-    top:  calc(100% - 200px);
+    top:  calc(100% - 20%);
     right:0px;
     transition-property: top right;
     transition-duration: 2s;
